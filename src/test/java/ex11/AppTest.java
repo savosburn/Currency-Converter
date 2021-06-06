@@ -17,7 +17,7 @@ class AppTest {
 
         int euros = 81;
         double rate = 1.3751;
-        double total = euros * rate;
+        double total = myApp.eurosToDollars(81, 1.3751);
 
         String expectedOutput = "81 euros at an exchange rate of 1.3751 is 111.38 U.S. dollars.";
 

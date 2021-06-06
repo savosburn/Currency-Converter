@@ -14,7 +14,7 @@ public class App {
         App myApp = new App();
 
         // input
-        int numEuros = myApp.readEuros();
+        double numEuros = myApp.readEuros();
         double exchangeRate = myApp.readRate();
 
         // calculations
@@ -25,22 +25,43 @@ public class App {
         myApp.output(outputString);
     }
 
-    public int readEuros() {
+    public double readEuros() {
         System.out.print("How many euros are you exchanging? ");
-        return in.nextInt();
+
+        // User can only enter number
+        while (!in.hasNextDouble()) {
+            System.out.print("Invalid number. Enter again: ");
+            in.next();
+        }
+
+        return in.nextDouble();
     }
 
     public double readRate() {
         System.out.print("What is the exchange rate? ");
+
+        // User can only enter number
+        while (!in.hasNextDouble()) {
+            System.out.print("Invalid number. Enter again: ");
+            in.next();
+        }
+
         return in.nextDouble();
     }
 
-    public double eurosToDollars(int euros, double rate) {
+    public double eurosToDollars(double euros, double rate) {
         return euros * rate;
     }
 
-    public String generateOutput(int euros, double rate, double total) {
-        return String.format("%d euros at an exchange rate of %.4f is %.2f U.S. dollars.", euros, rate, total);
+    public String generateOutput(double euros, double rate, double total) {
+        int euro;
+        String eurosAmount = Double.toString(euros);
+
+        if (euros % 1 == 0) {
+             euro = (int) euros;
+            eurosAmount = String.format("%d", euro);
+        }
+        return String.format("%s euros at an exchange rate of %.4f is %.2f U.S. dollars.", eurosAmount, rate, total);
     }
 
     public void output(String outputString) {
