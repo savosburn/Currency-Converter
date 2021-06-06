@@ -15,7 +15,6 @@ class AppTest {
     public void output_string_includes_numEuros_rate_and_USDollars() {
         App myApp = new App();
 
-
         double total = myApp.eurosToDollars(81, 1.3751);
 
         String expectedOutput = "81 euros at an exchange rate of 1.3751 is 111.38 U.S. dollars.";
